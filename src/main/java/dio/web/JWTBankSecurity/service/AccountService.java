@@ -9,6 +9,7 @@ import dio.web.JWTBankSecurity.enums.TipoTransaction;
 import dio.web.JWTBankSecurity.exception.ValueInvalidException;
 import dio.web.JWTBankSecurity.repository.AccountRepository;
 import dio.web.JWTBankSecurity.repository.TransactionRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
@@ -26,7 +27,7 @@ public class AccountService {
     }
 
     @Transactional
-    public AccountResponse deposit(AccountRequest request) {
+    public ResponseEntity<AccountResponse> deposit(AccountRequest request) {
         User user = authorizationService.getAuthenticatedUser();
 
         Account accountUser = user.getAccount();
@@ -39,11 +40,11 @@ public class AccountService {
         transactionRepository.save(transaction);
         accountRepository.save(accountUser);
 
-        return new AccountResponse(accountUser.getId(), accountUser.getBalance());
+        return ResponseEntity.ok(new AccountResponse(accountUser.getId(), accountUser.getBalance()));
     }
 
     @Transactional
-    public AccountResponse withdraw(AccountRequest request){
+    public ResponseEntity<AccountResponse> withdraw(AccountRequest request){
         User user = authorizationService.getAuthenticatedUser();
 
         Account account = user.getAccount();
@@ -60,12 +61,12 @@ public class AccountService {
         accountRepository.save(account);
         transactionRepository.save(transaction);
 
-        return new AccountResponse(account.getId(), account.getBalance());
+        return ResponseEntity.ok(new AccountResponse(account.getId(), account.getBalance()));
     }
 
-    public AccountResponse extract(){
+    public ResponseEntity<AccountResponse> extract(){
         User user = authorizationService.getAuthenticatedUser();
         Account account = user.getAccount();
-        return new AccountResponse(account.getId(), account.getBalance());
+        return ResponseEntity.ok(new AccountResponse(account.getId(), account.getBalance()));
     }
 }

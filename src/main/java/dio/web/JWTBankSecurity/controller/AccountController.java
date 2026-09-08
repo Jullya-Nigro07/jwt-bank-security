@@ -17,16 +17,16 @@ public class AccountController {
 
     @PostMapping("/deposit")
     public ResponseEntity<AccountResponse> deposit(@Valid @RequestBody AccountRequest request){
-        return ResponseEntity.ok(accountService.deposit(request));
+        return accountService.deposit(request);
     }
 
     @PostMapping("/withdraw")
     public ResponseEntity<AccountResponse> withdraw(@Valid @RequestBody AccountRequest request){
-        return ResponseEntity.ok(accountService.withdraw(request));
+        return accountService.withdraw(request);
     }
 
     @GetMapping("/extract")
     private ResponseEntity<AccountResponse> extract(){
-        return ResponseEntity.ok(accountService.extract());
+        return accountService.extract();
     }
 }
