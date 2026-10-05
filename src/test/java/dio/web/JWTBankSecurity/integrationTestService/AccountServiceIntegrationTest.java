@@ -1,4 +1,4 @@
-package dio.web.JWTBankSecurity.service;
+package dio.web.JWTBankSecurity.integrationTestService;
 
 import dio.web.JWTBankSecurity.dto.request.AccountRequest;
 import dio.web.JWTBankSecurity.dto.response.AccountResponse;
@@ -6,6 +6,8 @@ import dio.web.JWTBankSecurity.entity.Account;
 import dio.web.JWTBankSecurity.entity.User;
 import dio.web.JWTBankSecurity.repository.AccountRepository;
 import dio.web.JWTBankSecurity.repository.UserRepository;
+import dio.web.JWTBankSecurity.service.AccountService;
+import dio.web.JWTBankSecurity.service.AuthorizationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.math.BigDecimal;
 import static org.mockito.Mockito.when;
 
