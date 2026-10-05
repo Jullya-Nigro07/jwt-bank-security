@@ -1,4 +1,4 @@
-package dio.web.JWTBankSecurity.service;
+package dio.web.JWTBankSecurity.unitTestService;
 
 import dio.web.JWTBankSecurity.config.TokenConfig;
 import dio.web.JWTBankSecurity.dto.request.LoginRequest;
@@ -11,6 +11,8 @@ import dio.web.JWTBankSecurity.entity.User;
 import dio.web.JWTBankSecurity.exception.UnauthorizedException;
 import dio.web.JWTBankSecurity.repository.AccountRepository;
 import dio.web.JWTBankSecurity.repository.UserRepository;
+import dio.web.JWTBankSecurity.service.AuthorizationService;
+import dio.web.JWTBankSecurity.service.UserService;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -29,12 +31,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 import java.util.Set;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {

@@ -1,4 +1,4 @@
-package dio.web.JWTBankSecurity.service;
+package dio.web.JWTBankSecurity.integrationTestService;
 
 import dio.web.JWTBankSecurity.dto.request.LoginRequest;
 import dio.web.JWTBankSecurity.dto.request.RegisterUserRequest;
@@ -8,6 +8,8 @@ import dio.web.JWTBankSecurity.dto.response.UserResponse;
 import dio.web.JWTBankSecurity.entity.User;
 import dio.web.JWTBankSecurity.exception.ConflitInfoException;
 import dio.web.JWTBankSecurity.repository.UserRepository;
+import dio.web.JWTBankSecurity.service.AuthorizationService;
+import dio.web.JWTBankSecurity.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
