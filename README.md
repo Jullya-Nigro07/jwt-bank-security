@@ -96,13 +96,13 @@ I. Abra seu PostgreSQL e crie o banco:
    CREATE DATABASE my_users;
    ```
    
-II. Abra o projeto na IDE (IntelliJ IDEA ou outra IDE compatível com Java 21)
+II. Abra o projeto clonado (IntelliJ IDEA ou outra IDE compatível com Java 21)
 
 III. No arquivo application.properties (ou application.yml), ajuste as credenciais:
 ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/NOME_DO_BANCO
-   spring.datasource.username=postgres
-   spring.datasource.password=SUA_SENHA
+   spring.datasource.url=jdbc:postgresql://BD_HOST:PORT/NOME_DO_BANCO
+   spring.datasource.username=BD_USER_NAME
+   spring.datasource.password=BD_PASSWORD
   ```
    
 IV. Rode a classe principal "JWTBankSecurityApplication"
@@ -119,20 +119,19 @@ V. Teste as rotas no Postman, Insomnia ou via HTTP.Request do Intelliji
 ### 2. Via docker
 I. Abra seu docker
 
-II. Configure o docker-compose da aplicação com seus dados
+II. Configure o application-properties e o docker-compose da aplicação com seus dados
 
 ```bash
 db:
-  POSTGRES_DB: my_users
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: admadm
-
-api:
-  BD_NAME: nome_bd
-  BD_USER: seu_user_bd
-  BD_PASSWORD: sua_senha_bd
+  POSTGRES_DB: NOME_DO_BANCO
+  POSTGRES_USER: BD_USER_NAME
+  POSTGRES_PASSWORD: BD_PASSWORD
 ```
 
+III. Rode a aplicação com: 
+```bash
+docker-compose up --build
+```
 
 ---
 
@@ -268,3 +267,9 @@ Authorization
 
 ![Diagrama de Sequencia](img/diagramaSequencial.png)
 
+
+## 📍 Novas funionalidades a serem implementadas:
+- Opção de crédito
+- Enum do cartão de crédito
+- Liberação de limite de acordo com a renda com cliente
+- Transação de uma conta para outra
