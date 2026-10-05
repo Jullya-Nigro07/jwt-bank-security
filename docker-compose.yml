@@ -2,9 +2,9 @@ services:
   db:
     image: postgres:16
     environment:
-      POSTGRES_DB: my_users
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admadm
+      POSTGRES_DB: NOME_DO_BANCO
+      POSTGRES_USER: BD_USER
+      POSTGRES_PASSWORD: BD_PASSWORD
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -12,18 +12,26 @@ services:
       retries: 5
     ports:
       - "5432:5432"
-
-  api:
-    #roda o Dockerfile
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      BD_HOST: localhost
-      BD_PORT: 5432
-      BD_NAME: my_users
-      BD_USER: postgres
-      BD_PASSWORD: admadm
-    depends_on:
-      db:
-        condition: service_healthy
+#    networks:
+#      - minha-rede
+#
+#  api:
+#    #roda o Dockerfile
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      BD_HOST: db
+#      BD_PORT: 5432
+#      BD_NAME: my_users
+#      BD_USER: postgres
+#      BD_PASSWORD: admadm
+#    networks:
+#      - minha-rede
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#
+#networks:
+#  minha-rede:
+#    driver: bridge
